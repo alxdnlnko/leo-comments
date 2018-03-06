@@ -27,13 +27,13 @@ class LeoCommentsAdd extends PolymerElement {
       detail: { text }
     }))
 
-    this.$.input.value = '';
+    this.$.input.value = ''
   }
 
   _onKeyDown(e) {
     if ((e.which === 13 || e.keyCode === 13) && e.ctrlKey) {
-      e.preventDefault();
-      this._addComment();
+      e.preventDefault()
+      this._addComment()
     }
   }
 
@@ -41,7 +41,7 @@ class LeoCommentsAdd extends PolymerElement {
     const id = user.split('-')[1]
     const letters = 'abcdefghijklmnopqrstuvwxyz0123456789'
     const num = id.split('').reduce((res, l) => res + letters.indexOf(l), 0)
-    return `leo-avatars:user-${(num % 6) + 1}`;
+    return `leo-avatars:user-${(num % 6) + 1}`
   }
 
   static get template() {
