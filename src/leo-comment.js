@@ -4,8 +4,8 @@ import '../node_modules/@polymer/iron-flex-layout/iron-flex-layout.js'
 import '../node_modules/@polymer/paper-button/paper-button.js'
 import '../node_modules/@polymer/iron-icon/iron-icon.js'
 
-import './leo-avatars.js'
 import './leo-icons.js'
+import './leo-avatar.js'
 
 
 class LeoComment extends PolymerElement {
@@ -25,20 +25,10 @@ class LeoComment extends PolymerElement {
 
   _getDate(timestamp) {
     return moment(timestamp).calendar()
-    const d = new Date(timestamp)
-    const pad = (s) => ('0' + s).slice(-2)
-    return `${pad(d.getDate())}-${pad(d.getMonth()+1)}-${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`
-  }
-
-  _getAvatarIcon(user) {
-    const id = user.split('-')[1]
-    const letters = 'abcdefghijklmnopqrstuvwxyz0123456789'
-    const num = id.split('').reduce((res, l) => res + letters.indexOf(l), 0)
-    return `leo-avatars:user-${(num % 6) + 1}`;
   }
 
   _toggleLike() {
-    this.dispatchEvent(new CustomEvent('toggle-like', { bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('toggle-like', { bubbles: true, composed: true }))
   }
 
   static get template() {
@@ -76,27 +66,13 @@ class LeoComment extends PolymerElement {
           background: var(--divider-color);
           border-radius: 4px;
         }
-        :host([placeholder]) .avatar {
+        :host([placeholder]) leo-avatar {
           opacity: .5;
         }
-        .avatar {
+        leo-avatar {
           position: absolute;
           left: 16px;
           top: 24px;
-          width: 48px;
-          height: 48px;
-          border-radius: 50%;
-          background: var(--primary-color);
-          overflow: hidden;
-          @apply --layout-vertical;
-          @apply --layout-center-center;
-        }
-        .avatar > iron-icon {
-          position: relative;
-          top: 1px;
-          width: 48px;
-          height: 48px;
-          opacity: .9;
         }
         .header {
           @apply --layout-horizontal;
@@ -145,10 +121,8 @@ class LeoComment extends PolymerElement {
         }
       </style>
 
+      <leo-avatar user="[[author]]"></leo-avatar>
 
-      <div class="avatar">
-        <iron-icon icon="[[_getAvatarIcon(author)]]"></iron-icon>
-      </div>
       <div class="header">
         <div class="author">[[author]]</div>
         <div class="date">[[_getDate(timestamp)]]</div>

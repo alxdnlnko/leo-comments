@@ -6,11 +6,6 @@ import './leo-product.js'
 
 
 class LeoApp extends ReduxMixin(PolymerElement) {
-  static get properties() {
-    return {
-    }
-  }
-
   static get template() {
     return html`
       <style>

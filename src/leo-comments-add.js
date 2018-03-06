@@ -3,7 +3,8 @@ import { Element as PolymerElement, html }
 import '../node_modules/@polymer/paper-input/paper-textarea.js'
 import '../node_modules/@polymer/paper-button/paper-button.js'
 import '../node_modules/@polymer/iron-flex-layout/iron-flex-layout.js'
-import '../node_modules/@polymer/iron-icon/iron-icon.js'
+
+import './leo-avatar.js'
 
 
 class LeoCommentsAdd extends PolymerElement {
@@ -27,21 +28,14 @@ class LeoCommentsAdd extends PolymerElement {
       detail: { text }
     }))
 
-    this.$.input.value = '';
+    this.$.input.value = ''
   }
 
   _onKeyDown(e) {
     if ((e.which === 13 || e.keyCode === 13) && e.ctrlKey) {
-      e.preventDefault();
-      this._addComment();
+      e.preventDefault()
+      this._addComment()
     }
-  }
-
-  _getAvatarIcon(user) {
-    const id = user.split('-')[1]
-    const letters = 'abcdefghijklmnopqrstuvwxyz0123456789'
-    const num = id.split('').reduce((res, l) => res + letters.indexOf(l), 0)
-    return `leo-avatars:user-${(num % 6) + 1}`;
   }
 
   static get template() {
@@ -52,24 +46,10 @@ class LeoCommentsAdd extends PolymerElement {
           padding: 0 16px 0 80px;
           display: block;
         }
-        .avatar {
+        leo-avatar {
           position: absolute;
           left: 16px;
           top: 16px;
-          width: 48px;
-          height: 48px;
-          border-radius: 50%;
-          background: var(--primary-color);
-          overflow: hidden;
-          @apply --layout-vertical;
-          @apply --layout-center-center;
-        }
-        .avatar > iron-icon {
-          position: relative;
-          top: 1px;
-          width: 48px;
-          height: 48px;
-          opacity: .9;
         }
         .buttons {
           margin-top: 8px;
@@ -99,9 +79,8 @@ class LeoCommentsAdd extends PolymerElement {
         }
       </style>
 
-      <div class="avatar">
-        <iron-icon icon="[[_getAvatarIcon(user)]]"></iron-icon>
-      </div>
+      <leo-avatar user="[[user]]"></leo-avatar>
+
       <paper-textarea id="input" placeholder="Введите текст..." on-keydown="_onKeyDown"></paper-textarea>
       <div class="help-text">(Ctrl+Enter)</div>
       <div class="buttons">
