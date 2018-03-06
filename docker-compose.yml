@@ -1,0 +1,23 @@
+version: "2"
+
+
+volumes:
+  leo_comments_home:
+
+services:
+  leo_comments:
+    image: leo_comments
+    build:
+      context: .
+      args:
+        - UID=$MYUID
+        - GID=$GID
+        - USER=$USER
+        - GROUP=$GROUP
+    container_name: leo_comments_1
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - leo_comments_home:/home/${USER}
+    ports:
+      - "8081:8081"

@@ -1,0 +1,42 @@
+{
+  "name": "leo-comments",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Alex Danilenko <alxdnlnko@gmail.com>",
+  "license": "MIT",
+  "flat": true,
+  "scripts": {
+    "backup-store": "cp src/leo-store src/bk.leo-store -r",
+    "restore-store": "rm src/leo-store -r && mv src/bk.leo-store src/leo-store",
+    "build-store": "babel src/leo-store/* -d ./",
+    "build": "yarn backup-store && yarn build-store && polymer build && yarn restore-store",
+    "serve": "polymer serve -H 0.0.0.0 -p 8081"
+  },
+  "dependencies": {
+    "@polymer/iron-flex-layout": "next",
+    "@polymer/iron-icon": "next",
+    "@polymer/iron-iconset-svg": "next",
+    "@polymer/paper-button": "next",
+    "@polymer/paper-input": "next",
+    "@polymer/polymer": "next",
+    "@webcomponents/webcomponentsjs": "^1.1.0",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "moment": "^2.21.0",
+    "polymer-redux": "https://github.com/tur-nr/polymer-redux#polymer-3",
+    "redux": "^3.7.2",
+    "redux-saga": "^0.16.0"
+  },
+  "resolutions": {
+    "@webcomponents/webcomponentsjs": "1.1.0",
+    "@polymer/polymer": "3.0.0-pre.10",
+    "jsesc": "1.3.0",
+    "regenerator-runtime": "0.11.1",
+    "minimist": "1.2.0",
+    "kind-of": "4.0.0",
+    "is-number": "3.0.0",
+    "assert-plus": "1.0.0",
+    "extsprintf": "1.4.0"
+  }
+}

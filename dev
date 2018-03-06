@@ -1,0 +1,22 @@
+#!/bin/bash
+set -euo pipefail
+
+MYUID=$(id -u)
+USER=$(id -un)
+GID=$(id -g)
+GROUP=$(id -gn)
+export MYUID USER GID GROUP
+
+BASE=`dirname $0`
+COMPOSE="command -p docker-compose -f $BASE/docker-compose.yml"
+SERVICE="leo_comments"
+
+# SC2086 double quote to prevent globbing
+case "$1" in
+  up    ) ${COMPOSE} up -d ;;
+  exec  ) ${COMPOSE} exec ${SERVICE} su-exec "$USER" "${@:2}" ;;
+  sh    ) ${COMPOSE} exec ${SERVICE} su-exec "$USER" sh ;;
+  serve ) ${COMPOSE} exec ${SERVICE} su-exec "$USER" yarn serve ;;
+  build ) ${COMPOSE} exec ${SERVICE} su-exec "$USER" yarn build ;;
+  *     ) ${COMPOSE} "$@" ;;
+esac
