@@ -18,7 +18,7 @@ It uses Polymer 3 (preview) with *es-modules imports*
 
 * Chrome 61+
 * Safari 10.1+
-* Firefox 54+ – behind the `dom.moduleScripts.enabled setting` flag in `about:config`
+* Firefox 54+ – behind the `dom.moduleScripts.enabled` setting in `about:config`
 * Edge 16+
 
 
