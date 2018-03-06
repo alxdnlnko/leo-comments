@@ -13,6 +13,11 @@ import './leo-icons.js'
 class LeoProduct extends ReduxMixin(PolymerElement) {
   static get properties() {
     return {
+      _user: {
+        type: Array,
+        statePath: selectors.getUser
+      },
+
       _isLoading: {
         type: Boolean,
         statePath: selectors.getIsLoading
@@ -118,7 +123,10 @@ class LeoProduct extends ReduxMixin(PolymerElement) {
         <div class="header">
           Добавить комментарий
         </div>
-        <leo-comments-add on-add-comment="_createComment" disabled="[[_isLoading]]"></leo-comments-add>
+        <leo-comments-add
+          user="[[_user]]"
+          on-add-comment="_createComment"
+          disabled="[[_isLoading]]"></leo-comments-add>
 
       </div>
     `
