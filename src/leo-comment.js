@@ -31,11 +31,11 @@ class LeoComment extends PolymerElement {
     const id = user.split('-')[1]
     const letters = 'abcdefghijklmnopqrstuvwxyz0123456789'
     const num = id.split('').reduce((res, l) => res + letters.indexOf(l), 0)
-    return `leo-avatars:user-${(num % 6) + 1}`;
+    return `leo-avatars:user-${(num % 6) + 1}`
   }
 
   _toggleLike() {
-    this.dispatchEvent(new CustomEvent('toggle-like', { bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('toggle-like', { bubbles: true, composed: true }))
   }
 
   static get template() {
