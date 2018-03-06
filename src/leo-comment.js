@@ -25,9 +25,6 @@ class LeoComment extends PolymerElement {
 
   _getDate(timestamp) {
     return moment(timestamp).calendar()
-    const d = new Date(timestamp)
-    const pad = (s) => ('0' + s).slice(-2)
-    return `${pad(d.getDate())}-${pad(d.getMonth()+1)}-${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`
   }
 
   _getAvatarIcon(user) {
