@@ -14,10 +14,10 @@ https://alxdnlnko.github.io/leo-comments/
 
 ## Browsers support
 
-It uses Polymer 3 (preview) with es-modules imports/
+It uses Polymer 3 (preview) with *es-modules imports*
 
-* Safari 10.1+
 * Chrome 61+
+* Safari 10.1+
 * Firefox 54+ – behind the `dom.moduleScripts.enabled setting` flag in `about:config`
 * Edge 16+
 
